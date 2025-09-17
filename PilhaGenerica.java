@@ -76,5 +76,23 @@ public void popNTop(int n) throws Exception {
     }
 }
 
+public void invertPilha(){
+
+    invert(topoPilha, 0);
+}
+
+public void invert(int topo, int inicio) {
+    
+    if(topo > inicio){
+
+        T auxilio = e[topo];
+        e[topo] = e[inicio];
+        e[inicio] = auxilio;
+
+        invert(topo - 1, inicio + 1);
+    }
+
+}
+
 }
  
