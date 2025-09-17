@@ -91,8 +91,25 @@ public void invert(int topo, int inicio) {
 
         invert(topo - 1, inicio + 1);
     }
-
 }
 
+public void popNBase(int n) throws Exception{
+
+    if (n > sizeElements()) {
+        throw new Exception(n + "é maior que o núemro de elementos na pilha");
+    }
+    while( n > 0){
+        if(!isEmpty()){
+            int varrePilha = 0;
+            while(varrePilha < topoPilha){
+                e[varrePilha] = e[varrePilha + 1];
+                varrePilha ++;
+            }
+
+            pop();
+        }
+        n --; 
+    }
+}
 }
  
