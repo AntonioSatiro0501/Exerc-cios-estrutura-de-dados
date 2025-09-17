@@ -66,50 +66,50 @@ public class PilhaGenerica <T>{
         return topoPilha+1;
     }
     
-public void popNTop(int n) throws Exception {
-    if (n > sizeElements()) {
-        throw new Exception("Underflow - Esvaziamento da Pilha");
-    }
+    public void popNTop(int n) throws Exception {
+        if (n > sizeElements()) {
+            throw new Exception("Underflow - Esvaziamento da Pilha");
+        }
 
-    for (int i = 0; i < n; i++) {
-        pop();
-    }
-}
-
-public void invertPilha(){
-
-    invert(topoPilha, 0);
-}
-
-public void invert(int topo, int inicio) {
-    
-    if(topo > inicio){
-
-        T auxilio = e[topo];
-        e[topo] = e[inicio];
-        e[inicio] = auxilio;
-
-        invert(topo - 1, inicio + 1);
-    }
-}
-
-public void popNBase(int n) throws Exception{
-
-    if (n > sizeElements()) {
-        throw new Exception(n + "é maior que o núemro de elementos na pilha");
-    }
-    while( n > 0){
-        if(!isEmpty()){
-            int varrePilha = 0;
-            while(varrePilha < topoPilha){
-                e[varrePilha] = e[varrePilha + 1];
-                varrePilha ++;
-            }
-
+        for (int i = 0; i < n; i++) {
             pop();
         }
-        n --; 
     }
-}
+
+    public void invertPilha(){
+
+        invert(topoPilha, 0);
+    }
+
+    public void invert(int topo, int inicio) {
+    
+        if(topo > inicio){
+
+            T auxilio = e[topo];
+            e[topo] = e[inicio];
+            e[inicio] = auxilio;
+
+            invert(topo - 1, inicio + 1);
+        }
+    }
+
+    public void popNBase(int n) throws Exception{
+
+        if (n > sizeElements()) {
+            throw new Exception(n + "é maior que o núemro de elementos na pilha");
+        }
+        while( n > 0){
+            if(!isEmpty()){
+                int varrePilha = 0;
+                while(varrePilha < topoPilha){
+                    e[varrePilha] = e[varrePilha + 1];
+                    varrePilha ++;
+                }
+
+                pop();
+            }
+            n --; 
+        }
+    }
 }
  
