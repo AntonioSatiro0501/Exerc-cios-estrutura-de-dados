@@ -16,6 +16,8 @@ public class PilhaGenerica <T>{
         topoPilha = -1;
     }
     
+    // metodos
+
     public PilhaGenerica() {
         this(TAM_DEFAULT);
     }
@@ -64,5 +66,15 @@ public class PilhaGenerica <T>{
         return topoPilha+1;
     }
     
+public void popNTop(int n) throws Exception {
+    if (n > sizeElements()) {
+        throw new Exception("Underflow - Esvaziamento da Pilha");
+    }
+
+    for (int i = 0; i < n; i++) {
+        pop();
+    }
+}
+
 }
  
