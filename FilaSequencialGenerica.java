@@ -62,4 +62,23 @@ public class FilaSequencialGenerica <T> {
 		if (!qIsEmpty()) return this.fim - this.inicio;
 		else return 0;
 	}
+
+	public void invert(){
+
+		invertAuxilia(inicio, fim - 1);
+	}
+
+	public void invertAuxilia(int inicio, int fim){
+
+		if(!qIsEmpty()){
+			if(fim > inicio){
+				T auxilio = e[inicio];
+				e[inicio] = e[fim];
+				e[fim] = auxilio;
+
+				invertAuxilia(inicio + 1, fim - 1);
+			}
+
+		}
+	}
 }
