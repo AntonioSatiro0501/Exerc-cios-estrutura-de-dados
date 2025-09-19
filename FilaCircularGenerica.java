@@ -118,5 +118,23 @@ public class FilaCircularGenerica <T>{
     	}
 	}
 
+	public void dequeueNFirst(int n) throws Exception{
 
+		if(n <= totalElementos()){
+			while(n > 0){
+				dequeue();
+				n -=1;
+			}
+		}
+	}
+
+	public void dequeueNLast(int n) throws Exception{
+		if (n > totalElementos()) {
+        	throw new Exception("Tentativa de remover mais elementos do que existem na fila.");
+    	}
+
+		invert();
+		dequeueNFirst(n);
+		invert();
+	}
 }
