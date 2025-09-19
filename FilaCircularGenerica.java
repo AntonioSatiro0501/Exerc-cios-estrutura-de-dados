@@ -70,4 +70,25 @@ public class FilaCircularGenerica <T>{
 		return qtde;
 	}
 
+   public void invert(){
+    if(!qIsEmpty()){
+        int fimReal = (inicio + totalElementos() - 1) % e.length;
+        invertAuxilia(inicio, fimReal);
+        }
+    }
+
+    public void invertAuxilia(int inicio, int fim){
+        if(inicio != fim && (fim + 1) % e.length != inicio){
+            T auxilio = e[inicio];
+            e[inicio] = e[fim];
+            e[fim] = auxilio;
+
+            inicio = (inicio + 1) % e.length;
+            fim = (fim - 1 + e.length) % e.length;
+
+            invertAuxilia(inicio, fim);
+        }
+    }
+
+
 }
