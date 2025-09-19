@@ -90,5 +90,33 @@ public class FilaCircularGenerica <T>{
         }
     }
 
+	public void dequeuePosOdd() throws Exception{
+    	int n = totalElementos();
+    	int count = 0;
+
+    	while (count < n) {
+        	if (inicio % 2 != 0) {
+            	dequeue();
+        	} else {
+            	inicio = (inicio + 1) % e.length;
+        	}
+        	count++;
+    	}
+	}
+
+	public void dequeuePosEven() throws Exception{
+		int n = totalElementos();
+    	int count = 0;
+
+    	while (count < n) {
+        	if (inicio % 2 == 0) {
+            	dequeue();
+        	} else {
+            	inicio = (inicio + 1) % e.length;
+        	}
+        	count++;
+    	}
+	}
+
 
 }
