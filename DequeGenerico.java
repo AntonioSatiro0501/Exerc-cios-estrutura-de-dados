@@ -1,5 +1,5 @@
 public class DequeGenerico <T>{
-    
+
 	private static final int TAM_DEQUE = 100;
 	private	int inicio, fim, qtde, tamanho;
 	private T e[ ];	
@@ -142,4 +142,7 @@ public class DequeGenerico <T>{
 	   }
 	}
 
+    public int totalElementos(){
+        return qtde;
+    }
 }
