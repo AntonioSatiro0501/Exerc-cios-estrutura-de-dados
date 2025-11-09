@@ -237,5 +237,28 @@ public class DLL<T> {
 		}
 
 	}
-	
+
+
+	public void concatena(DLL<T> lista){
+
+		if(!isEmpty() || !lista.isEmpty()){
+
+			Node2<T> pAnda = head;
+			while(pAnda.getRight() != head){
+				pAnda = pAnda.getRight();
+			}
+
+			pAnda.setRight(lista.head);
+			lista.head.setLeft(pAnda);
+
+			pAnda = lista.head;
+			while(pAnda.getRight() != lista.head){
+				pAnda = pAnda.getRight();
+			}
+
+			pAnda.setRight(head);
+			head.setLeft(pAnda);
+			size += lista.getSize();
+		}
+	}
 }
