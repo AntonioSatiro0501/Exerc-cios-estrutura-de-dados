@@ -337,7 +337,17 @@ public class CircleLinkedList<T> {
 
 			}
 		}
+	}
 
+	public void concatena(CircleLinkedList<T> lista){
 
+		if(!isEmpty() || !lista.isEmpty()){
+
+			tail.setProx(lista.head);
+			lista.tail.setProx(head);
+			tail = lista.tail;
+			size += lista.getSize();
+
+		}
 	}
 }
