@@ -294,5 +294,18 @@ public class LinkedList<T> {
 
 	}
 
+	public void concatena(LinkedList<T> lista){
+
+		if(!isEmpty() || !lista.isEmpty()){
+
+			Node<T> pAnda = head;
+			while(pAnda.getProx() != null){
+				pAnda = pAnda.getProx();
+			}
+
+			pAnda.setProx(lista.head);
+			size += lista.getSize();
+		}
+	}
 	
 }
