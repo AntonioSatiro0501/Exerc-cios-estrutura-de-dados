@@ -3,31 +3,30 @@ public class DLL<T> {
 	private	Node2<T> head;
 	private int size;
 	
-	// DLL(): Construtor vazio
-	// inicia o cabeça da lista como null e tamanho = 0
+	
 	public DLL(){
 		this.head = null;
 		this.size = 0;
 	}
-	// isEmpty(): verifica se a lista está vazia, retornando "true" se vazia
-	// "false" se não vazia.
+	
 	public boolean isEmpty() { // Verifica se DLL está vazia
 		return head == null;
 	}
-	// isFull(): verifica se a lista está cheia, retornando "true" se cheia
-	// "false" se não cheia.
+
+	
 	public boolean isFull() {
 		Node2<T> aux = new Node2<T>();
 		return aux == null;
 	}
-	// getSize(): retorna o tamanho da lista (total de elementos armazenados).
+	
+
 	public int getSize() { return size; }
 	
-	// getHead(): retorna o Node cabeça de lista.
+	
+
 	public Node2<T> getHead() { return head; }
 	
-	// showAscending(): Percorre a DLL em ordem crescente 
-	// e mostra os seus valores
+	
 	public void showAscending(){
 		// Percorre a lista e imprime os valores
 		// em ordem Crescente
@@ -42,7 +41,8 @@ public class DLL<T> {
 			System.out.print( pAnda.getData() +"]");
 		}
 	}
-	// showDescending(): Percorre a DLL em ordem decrescente e mostra os seus valores
+	
+
 	public void showDescending(){
 		// Percorre a lista e imprime os valores
 		// em ordem decrescente
@@ -58,8 +58,7 @@ public class DLL<T> {
 		}
 	}
 
-	// insertAscending(int Key, T data): Insere um novo elemento na DLL na ordem
-	// crescente
+	
 	public boolean insertAscending(int Key, T data){
 		if (isFull()) return false;
 		
@@ -110,7 +109,8 @@ public class DLL<T> {
 		this.size++;
 		return true;
 	}	
-	// search(int Key): procura e retorna o nó da Key passada como parâmetro
+	
+
 	public Node2<T> search(int Key){
 			// Lista vazia
 		if (isEmpty()) return null;
@@ -127,8 +127,8 @@ public class DLL<T> {
 			return pAnda;
 		}
 	}
-	// get(int pos): retorna o "Node" que se encontra na posição "pos" da lista. 
-	// O head está na posição 1. Lista vazia retorna null. Se pos > size retorna null.
+	
+
 	public Node2<T> get(int pos){
 	   if (isEmpty()) return null;
 	   if (pos <= 0 || pos > size) return null;
@@ -156,8 +156,7 @@ public class DLL<T> {
 	   head = null; 
 	}
 
-	// remove(int Key): Remove um elemento da DLL
-	// retornando verdadeiro (se removido com sucesso) ou falso (senão foi removido)
+	
 	public boolean remove(int Key) {
 		// Lista vazia
 		if (isEmpty()) return false;
@@ -210,6 +209,33 @@ public class DLL<T> {
 	    sb.append("Qtde.: " + size);
 	    sb.append("");	    
 	    return sb.toString();
+	}
+
+	public void inverte(){
+		if(!isEmpty()){
+			if(size > 1){
+
+
+				Node2<T> pAnda = head;
+				Node2<T> aux = pAnda.getRight();
+				
+				pAnda.setRight(pAnda.getLeft());
+				pAnda.setLeft(aux);
+
+				pAnda = aux;
+				aux = aux.getRight();
+
+				while(pAnda != head){
+					pAnda.setRight(pAnda.getLeft());
+					pAnda.setLeft(aux);
+					pAnda = aux;
+					aux = aux.getRight();
+				}
+
+				head = pAnda.getRight();
+			}
+		}
+
 	}
 	
 }

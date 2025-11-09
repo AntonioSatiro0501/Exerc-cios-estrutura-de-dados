@@ -1,33 +1,36 @@
 
 public class LinkedList<T> {
-	private Node<T> head; // Ponteiro cabeça de lista
-	private int size; // Quantidade de elementos da lista ligada
-	// LinkedList(): construtor da Lista encadeada
+	private Node<T> head; 
+	private int size; 
+	
 	public LinkedList() {
 		head = null;
 		size = 0;
 	}
-	// isEmpty(): verifica se a lista está vazia, retornando "true" se vazia
-	// "false" se não vazia.
+	
+	
 	public boolean isEmpty() {
 		return getHead() == null;
 	}
-	// isFull(): verifica se a lista está cheia, retornando "true" se cheia
-	// "false" se não cheia.	
+	
+	
 	public boolean isFull() {
 		Node<T> aux = new Node<T>();
 		return aux == null;
 	}
-	// getSize(): retorna o tamanho da lista (total de elementos armazenados).
+	
+
 	public int getSize() {
 		return size;
 	}
-	// getHead(): retorna o "Node" cabeça de lista	
+
+
+	
 	public Node<T> getHead() {
 		return head;
 	}
-	// get(int pos): retorna o "Node" que se encontra na posição "pos" da lista.	
-	//   O head está na posição 1. Lista vazia retorna null. Se pos > size retorna null.
+	
+
 	public Node<T> get(int pos) {
 		if (isEmpty()) return null;
 		if (pos <= 0 || pos > size) return null;
@@ -39,26 +42,24 @@ public class LinkedList<T> {
 		}
 		return pAnda;
 	}
-    // insert(T id, int pos): insere o elemento "id" na posição "pos" passada como parâmetro
-	// caso seja uma posição maior que o tamanho da lista, insere no final
-	// se posição de inserção for inválida  (<= 0) retorna false
+   
+
 	public boolean insert(T id, int pos) {
 		Node<T> aux; // Ponteiro auxiliar para o novo nó a ser inserido
 		Node<T> pAnda; // Ponteiro que anda na lista ligada	
 		Node<T> pAnt = null;  // Ponteiro anterior ao que anda
-		if (pos <= 0) return false; // Se posição inválida, não insere e retorna
-	    if (!isFull()){ // se há memória disponível
+		if (pos <= 0) return false; 
+	    if (!isFull()){ 
 	      aux = new Node<T>(id, null);
 	      if (isEmpty()){ // Insere no começo da lista
 	    	  head = aux;
-	    	  // Caso a posição a iserir seja a última ou superior, insere no final
-	      } else if (pos >= size+1) {
+	    	  
+	      } else if (pos >= size+1)  { // Caso a posição a iserir seja a última ou superior, insere no final
 	    		insertTail(id);
 	      } else {// a posição a inserir é no meio da lista
-	    	// Procura a posição de inserção
+	    	
 	    	int cont = 1;
-	        pAnda = head;  // Ponteiro que anda até a posição de inserção 
-            // Procura a posição de inserção  
+	        pAnda = head; 
 	        while (pAnda.getProx() != null && cont != pos){
 	           pAnt = pAnda;
 	           pAnda = pAnda.getProx();
@@ -72,15 +73,15 @@ public class LinkedList<T> {
 	        }
 	      }
 		  size++;
-		  return true; // inserção realizada com sucesso
+		  return true; 
 	    }
 	    else return false; 
 	};
-	// addFirst(T id): insere o "id" passado como parâmetro no começo da 
-	// lista (funcionalidade idêntica ao insertHead).	
+	
+	
 	public boolean addFirst(T id){
 		Node<T> aux; // Ponteiro auxiliar para o novo nó a ser inserido
-		// se a lista não está cheia
+		
 	    if (!isFull()){  
 	      aux = new Node<T>(id, null);
 	      if (isEmpty()){ // Lista está vazia
@@ -90,14 +91,14 @@ public class LinkedList<T> {
 	      	head = aux;
 	      }
     	  size++;
-	      return true; // inserção realizada com sucesso
+	      return true; 
 	    }
-	    else return false; // não há espaço disponível em memória 
+	    else return false;  
 	};
-	// insertHead(T id): insere o "id" passado como parâmetro no começo da 
-	// lista (funcionalidade idêntica ao addFirst).	
+	
+
 	public boolean insertHead(T id){
-		Node<T> aux; // Ponteiro auxiliar para o novo nó a ser inserido
+		Node<T> aux; 
 	    if (!isFull()){ // se a lista não está cheia
 	      aux = new Node<T>(id, null);
 	      if (isEmpty()){ // Lista está vazia
@@ -107,15 +108,15 @@ public class LinkedList<T> {
 	      	head = aux;
 	      }
     	  size++;
-	      return true; // inserção realizada com sucesso
+	      return true; 
 	    }
 	    else return false; // não há espaço disponível em memória  
 	};
-	// insertTail(T id): insere o "id" passado como parâmetro no final da 
-	// lista (funcionalidade idêntica ao addLast).		
+	
+	
 	public boolean insertTail(T id){
-		Node<T> aux; // Ponteiro auxiliar para o novo nó a ser inserido
-		Node<T> pAnda; // Ponteiro que anda na lista ligada	
+		Node<T> aux; 
+		Node<T> pAnda; 	
 	    if (!isFull()){ // se a lista não está cheia
 	      aux = new Node<T>(id, null);
 	      if (isEmpty()){ // Lista está vazia
@@ -127,15 +128,15 @@ public class LinkedList<T> {
 	        pAnda.setProx( aux );
 	      }
     	  size++;
-		  return true;  // inserção realizada com sucesso
+		  return true;  
 	    }
-	    else return false; // não há espaço disponível em memória  
+	    else return false;  
 	};
-	// addLast(T id): adiciona o "id" passado como parâmetro no final da 
-	// lista (funcionalidade idêntica ao insertTail)
+	
+
 	public boolean addLast(T id){
-		Node<T> aux; // Ponteiro auxiliar para o novo nó a ser inserido
-		Node<T> pAnda; // Ponteiro que anda na lista ligada	
+		Node<T> aux; 
+		Node<T> pAnda; 
 	    if (!isFull()){
 	      aux = new Node<T>(id, null);
 	      if (isEmpty()){ // Lista está vazia
@@ -147,15 +148,14 @@ public class LinkedList<T> {
 	        pAnda.setProx( aux ); // Insere no final e atualiza o ponteiro
 	      }
     	  size++;
-		  return true; // inserção realizada com sucesso
+		  return true; 
 	    }
-	    else return false;  // não há espaço disponível em memória
+	    else return false;  
 	};
-	// search(T id): procura o elemento "id" dentro da lista
-	// se "id" não existir ou lista vazia retorna null
-	// caso contrário, retorna o "Node"
+	
+
 	public Node<T> search(T id){
-		Node<T> pAnda; // Ponteiro que anda na lista ligada	
+		Node<T> pAnda; 
 	    if (isEmpty()) {
 			return null; // Lista vazia
 	    }else{
@@ -166,13 +166,11 @@ public class LinkedList<T> {
 	      return pAnda; // Retorna a referência para o elemento	encontrado
 	    }
 	}
-	// remove(T id): remove a primeira ocorrência do "id" na lista
-	// retorna "true" se remoção com sucesso
-	// ou "false" se não foi possível remover, nos casos: o elemento não existe
-	// ou a lista está vazia
+	
+
 	public boolean remove(T id){
-		Node<T> pAnda; // Ponteiro que anda na lista ligada		
-		Node<T> pAnt = null; // Ponteiro anterior ao que anda na lista
+		Node<T> pAnda; 		
+		Node<T> pAnt = null; 
 	    if (isEmpty()) return false; // Se lista vazia, não é possível remover
 	    else{  // caso haja elementos na lista
 	      pAnda = head;
@@ -191,11 +189,12 @@ public class LinkedList<T> {
 			}
 	      	pAnda = null;
 	    	size--;
-	      	return true;    // remoção realizado como sucesso
+	      	return true;    
 	      }
 	    }
 	}
-	// pollFirst(): remove e retorna o primeiro elemento da lista
+	
+
 	public T pollFirst(){
 	    if (isEmpty()) return null; // Se lista vazia, não é possível remover
 	    else{  // Remove primeiro elemento da lista e retorna o dado
@@ -205,7 +204,8 @@ public class LinkedList<T> {
 	      return pAux.getDado();
 	    }
 	}	
-	// pollLast(): remove e retorna o último elemento da lista
+	
+
 	public T pollLast(){
 	    if (isEmpty()) return null; // Se lista vazia, não é possível remover
 	    else{  
@@ -220,7 +220,7 @@ public class LinkedList<T> {
 	      return pAnt.getDado();
 	    }
 	}	
-	// print(): percorre a lista e imprime todo o seu conteúdo
+	
 	public void print(){
 		Node<T> pAnda; 
 	    pAnda = head;
@@ -229,7 +229,8 @@ public class LinkedList<T> {
 	      pAnda = pAnda.getProx();
 	    }
 	}
-	// clear(): limpa a lista ligada original, deixando-a vazia
+	
+
 	public void clear(){
 		Node<T> pAnt; // Ponteiro anterior ao que anda
 		Node<T> pAnda = head;  // Ponteiro que anda na lista original
@@ -243,9 +244,9 @@ public class LinkedList<T> {
 		size = 0;
 		head = null; 	 
 	}
-	// toString(): Sobrescrita/sobreposição (override) do método toString(), que veio da superclasse Object.
-	// O retorno do método toString() é a representação de um objeto em formato string, e toString()
-	// geralmente é executado (de forma implícita) quando passamos um objeto ao System.out.print*().
+	
+
+
 	@Override
 	public String toString() {
 		
@@ -267,5 +268,31 @@ public class LinkedList<T> {
 	    
 	    return sb.toString();
 	}
+
+
+	public void inverte(){
+
+		if(!isEmpty()){
+
+			if(size > 1){
+
+				Node<T> pAnda = head, ultimo = null, proximo = null;
+	      		
+
+				while((pAnda != null)){
+					proximo = pAnda.getProx();
+					pAnda.setProx(ultimo);
+					ultimo = pAnda;
+					pAnda = proximo;
+				}
+
+				
+				this.head = ultimo;
+			}
+		}
+
+
+	}
+
 	
 }

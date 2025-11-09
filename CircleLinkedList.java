@@ -1,38 +1,42 @@
 
 public class CircleLinkedList<T> {
-	private Node<T> head; // ponteiro do cabeça de lista
-	private Node<T> tail;  // ponteiro do final da lista
-	private int size; // tamanho da lista
-	// CircleLinkedList(): construtor da Lista encadeada circular
+	private Node<T> head; 
+	private Node<T> tail;  
+	private int size; 
+	
+
 	public CircleLinkedList() {
 		head = tail = null;
 		size = 0;
 	}
-	// getHead(): retorna o "Node" cabeça de lista	
+	
+	
 	public Node<T> getHead() {
 		return head;
 	}
-	// getTail(): retorna o "Node" final da lista	
+	
+	
 	public Node<T> getTail() {
 		return tail;
 	}
-	// isEmpty(): verifica se a lista está vazia, retornando "true" se vazia
-	// "false" se não vazia.
+	
+
 	public boolean isEmpty() {
 		return head == null;
 	}
-	// isFull(): verifica se a lista está cheia, retornando "true" se cheia
-	// "false" se não cheia.
+	
+
 	public boolean isFull() {
 		Node<T> aux = new Node<T>();
 		return aux == null;
 	}
-	// getSize(): retorna o tamanho da lista (total de elementos armazenados).
+	
+
 	public int getSize() {
 		return size;
 	}
-	// get(int pos): retorna o "Node" que se encontra na posição "pos" da lista.	
-	//   O head está na posição 1. Lista vazia retorna null. Se pos > size retorna null.
+	
+
 	public Node<T> get(int pos) {
 		if (isEmpty()) return null;
 		if (pos <= 0 || pos > size) return null;
@@ -44,8 +48,8 @@ public class CircleLinkedList<T> {
 		}
 		return pAnda;
 	}
-	// insertTail(T data): insere o "data" passado como parâmetro no final da 
-	// lista (funcionalidade idêntica ao addLast).	
+	
+
 	public boolean insertTail(T data){
 		Node<T> aux;
 	    if (!isFull()){ // Não há espaço de memória
@@ -63,8 +67,8 @@ public class CircleLinkedList<T> {
 	    }
 	    else return false; 
 	};
-	// addFirst(T data): insere o "data" passado como parâmetro no começo da 
-	// lista (funcionalidade idêntica ao insertHead).
+	
+
 	public boolean addFirst(T data){
 		Node<T> aux;
 	    if (!isFull()){
@@ -82,8 +86,8 @@ public class CircleLinkedList<T> {
 	    }
 	    else return false; 
 	};
-	// addLast(T data): adiciona o "data" passado como parâmetro no final da 
-	// lista (funcionalidade idêntica ao insertTail)
+	
+
 	public boolean addLast(T data){
 		Node<T> aux;
 	    if (!isFull()){ // Não há espaço de memória
@@ -101,8 +105,8 @@ public class CircleLinkedList<T> {
 	    }
 	    else return false; 
 	};
-	// insertHead(T data): insere o "data" passado como parâmetro no começo da 
-	// lista (funcionalidade idêntica ao addFirst).	
+	
+
 	public boolean insertHead(T data){
 		Node<T> aux;
 	    if (!isFull()){
@@ -121,13 +125,11 @@ public class CircleLinkedList<T> {
 	    else return false; 
 	};
 	
-    // insert(T data, int pos): insere o elemento "data" na posição "pos" passada como parâmetro
-	// caso seja uma posição maior que o tamanho da lista, insere no final
-	// se posição de inserção for inválida  (<= 0) retorna false
+   
 	public boolean insert(T data, int pos) {
-		Node<T> aux; // Ponteiro auxiliar para o novo nó a ser inserido
-		Node<T> pAnda; // Ponteiro que anda na lista ligada	
-		Node<T> pAnt = null;  // Ponteiro anterior ao que anda
+		Node<T> aux; 
+		Node<T> pAnda; 
+		Node<T> pAnt = null;  
 		if (pos <= 0) return false; // Se posição inválida, não insere e retorna
 	    if (!isFull()){ // se há memória disponível
 	      aux = new Node<T>(data, null);
@@ -155,13 +157,12 @@ public class CircleLinkedList<T> {
 	        }
 	      }
 		  size++;
-		  return true; // inserção realizada com sucesso
+		  return true; 
 	    }
 	    else return false; 
 	};
-	// search(T data): procura o elemento "data" dentro da lista
-	// se "data" não existir ou lista vazia retorna null
-	// caso contrário, retorna o "Node"	
+	
+
 	public Node<T> search(T data){
 		Node<T> pAnda;
 		
@@ -177,7 +178,8 @@ public class CircleLinkedList<T> {
 	      return null; // elemento não encontrado
 	    }
 	}
-	// print(): percorre a lista e imprime todo o seu conteúdo
+	
+
 	public void print(){
 		Node<T> pAnda; 
 	    if (!isEmpty()) {
@@ -191,7 +193,8 @@ public class CircleLinkedList<T> {
 	    }
 	    System.out.print("], Qtde.: " + size + ".\n");
 	}
-	// clear(): limpa a lista ligada original, deixando-a vazia
+	
+
 	public void clear(){
 		Node<T> pAnt, pAnda = head;
 		
@@ -205,13 +208,11 @@ public class CircleLinkedList<T> {
 		tail = head = null;	
 	}
 	
-	// remove(T data): remove a primeira ocorrência do "data" na lista
-	// retorna "true" se remoção com sucesso
-	// ou "false" se não foi possível remover, nos casos: o elemento não existe
-	// ou a lista está vazia
+	
+
 	public boolean remove(T data){
-		Node<T> pAnda; // Ponteiro que anda na lista ligada		
-		Node<T> pAnt = null; // Ponteiro anterior ao que anda na lista
+		Node<T> pAnda; 
+		Node<T> pAnt = null; 
 	    if (isEmpty()) return false; // Se lista vazia, não é possível remover
 	    else{  // caso haja elementos na lista
 	      pAnda = head;
@@ -246,7 +247,8 @@ public class CircleLinkedList<T> {
 	      }
 	    }
 	}
-	// pollFirst(): remove e retorna o primeiro elemento da lista
+	
+
 	public T pollFirst(){
 	    if (isEmpty()) return null; // Se lista vazia, não é possível remover
 	    else{  // Remove primeiro elemento da lista e retorna o dado
@@ -261,7 +263,8 @@ public class CircleLinkedList<T> {
 	      return pAux.getDado();
 	    }
 	}	
-	// pollLast(): remove e retorna o último elemento da lista
+	
+
 	public T pollLast(){
 	    if (isEmpty()) return null; // Se lista vazia, não é possível remover
 	    else{  
@@ -308,4 +311,33 @@ public class CircleLinkedList<T> {
 	    return sb.toString();
 	}
 	
+
+	public void inverte(){
+
+		if(!isEmpty()){
+
+			if(size > 1){
+
+				Node<T> pAnda = head, pAnt = tail, proximo;
+
+				proximo = pAnda.getProx();
+				pAnda.setProx(pAnt);
+				pAnt = pAnda;
+				pAnda = proximo;
+
+				while(pAnda != head){
+					proximo = pAnda.getProx();
+					pAnda.setProx(pAnt);
+					pAnt = pAnda;
+					pAnda = proximo;
+				}
+
+				this.head = pAnt;
+				this.tail = pAnda;
+
+			}
+		}
+
+
+	}
 }
