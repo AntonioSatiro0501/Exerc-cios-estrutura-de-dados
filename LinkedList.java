@@ -308,4 +308,28 @@ public class LinkedList<T> {
 		}
 	}
 	
+	public void merge(LinkedList<T> lista){
+
+		if(!isEmpty() || !lista.isEmpty()){
+
+			Node<T> pAndaPrimeira = head, pAndaSegunda = lista.head;
+			while(pAndaPrimeira != null || pAndaSegunda != null){
+				Node<T> aux1 = pAndaPrimeira.getProx(), aux2 = pAndaSegunda.getProx();
+
+				pAndaPrimeira.setProx(pAndaSegunda);
+				if(!(aux1 == null)){
+					pAndaSegunda.setProx(aux1);
+				}
+
+				
+				pAndaPrimeira = aux1;
+				pAndaSegunda = aux2;
+				
+				System.out.print(toString());
+			}
+
+			size += lista.getSize();
+			System.out.println("Finalizado");
+		}
+	}
 }
