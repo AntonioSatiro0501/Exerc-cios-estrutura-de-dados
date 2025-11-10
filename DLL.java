@@ -201,6 +201,7 @@ public class DLL<T extends Comparable<T>> {
 	    Node2<T> pAnda = head;
 	    while (qtde != size) {
 	      sb.append(pAnda.getData());
+		  sb.append(" ");
 	      qtde++;
 	      pAnda = pAnda.getRight();
 	    }
@@ -313,5 +314,56 @@ public class DLL<T extends Comparable<T>> {
 		for (int i = 0; i < data.length; ++i)
 			insertDescending(i, data[i]);
 
+	}
+
+	public void merge(DLL<T> lista){
+
+		if(!isEmpty() && !lista.isEmpty()){
+
+			Node2<T> pAndaPrimeira = head, pAndaSegunda = lista.head;
+			while(pAndaPrimeira.getRight() != head && pAndaSegunda.getRight() != lista.head){
+				Node2<T> aux1 = pAndaPrimeira.getRight(), aux2 = pAndaSegunda.getRight();
+
+				pAndaPrimeira.setRight(pAndaSegunda);
+				pAndaSegunda.setLeft(pAndaPrimeira);
+				pAndaSegunda.setRight(aux1);
+				aux1.setLeft(pAndaSegunda);				
+
+				pAndaPrimeira = aux1;
+				pAndaSegunda = aux2;
+			}
+
+			
+
+			if(size > lista.size){
+				Node2<T> aux = pAndaPrimeira.getRight();
+				pAndaPrimeira.setRight(pAndaSegunda);
+				pAndaSegunda.setLeft(pAndaPrimeira);
+				pAndaSegunda.setRight(aux);
+				aux.setLeft(pAndaSegunda);
+				
+			}
+			else if(size == lista.size){
+				pAndaPrimeira.setRight(pAndaSegunda);
+				pAndaSegunda.setLeft(pAndaPrimeira);
+				pAndaSegunda.setRight(head);
+				head.setLeft(pAndaSegunda);
+				
+			}
+			else{
+				Node2<T> aux = lista.head;
+				pAndaPrimeira.setRight(pAndaSegunda);
+				pAndaSegunda.setLeft(pAndaPrimeira);
+				
+				while(aux.getRight() != lista.head){
+					aux = aux.getRight();
+				}
+
+				aux.setRight(head);
+				head.setLeft(aux);
+			}
+			
+			size += lista.getSize();
+		}
 	}
 }
