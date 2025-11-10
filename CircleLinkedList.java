@@ -471,4 +471,24 @@ public class CircleLinkedList<T> {
 		pAnda.setDado(data);
 		return true;
 	}
+
+	public void duplica(){
+
+		if(!isEmpty()){
+
+			Node<T> pTail = tail, pCount = head;
+
+			for(int i = 0; i < size; i++){
+				Node<T> aux = new Node<T>(pCount.getDado(), null);
+				pTail.setProx(aux);
+				pTail = aux;
+				pCount = pCount.getProx();
+			}
+
+			pTail.setProx(head);
+			tail = pTail;
+
+			size = size*2;
+		}
+	}
 }

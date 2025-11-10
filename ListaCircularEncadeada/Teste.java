@@ -11,9 +11,9 @@ public class Teste {
 			lista.insertTail(ids1[i]);
 		
 	    
-        lista.removeParImpar(2);
+        lista.duplica();
 
         System.out.println(lista);
-        System.out.println(lista.getSize());
+        
     }
 }
