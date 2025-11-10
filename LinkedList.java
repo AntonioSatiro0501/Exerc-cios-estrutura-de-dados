@@ -313,7 +313,7 @@ public class LinkedList<T> {
 		if(!isEmpty() || !lista.isEmpty()){
 
 			Node<T> pAndaPrimeira = head, pAndaSegunda = lista.head;
-			while(pAndaPrimeira != null || pAndaSegunda != null){
+			while(pAndaPrimeira != null && pAndaSegunda != null){
 				Node<T> aux1 = pAndaPrimeira.getProx(), aux2 = pAndaSegunda.getProx();
 
 				pAndaPrimeira.setProx(pAndaSegunda);
@@ -325,11 +325,11 @@ public class LinkedList<T> {
 				pAndaPrimeira = aux1;
 				pAndaSegunda = aux2;
 				
-				System.out.print(toString());
+				
 			}
 
 			size += lista.getSize();
-			System.out.println("Finalizado");
+			
 		}
 	}
 }
