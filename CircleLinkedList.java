@@ -454,4 +454,21 @@ public class CircleLinkedList<T> {
 			size -= count;
 		}
 	}
+
+	public boolean atualiza(int pos, T data){
+
+		if(isEmpty() || (pos > size - 1) || pos < 0){
+			return false;
+		}
+
+		Node<T> pAnda = head;
+		int count =0;
+		while(count != pos){
+			pAnda = pAnda.getProx();
+			count ++;
+		}
+
+		pAnda.setDado(data);
+		return true;
+	}
 }
