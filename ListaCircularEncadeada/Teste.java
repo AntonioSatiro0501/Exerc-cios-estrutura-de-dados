@@ -11,13 +11,9 @@ public class Teste {
 			lista.insertTail(ids1[i]);
 		
 	    
-		// Insere o vetor ids1 no final da lista 
-		for (int i = 0; i < ids1.length -3; ++i)
-			lista2.insertTail(ids1[i]);
-
-        lista.merge(lista2);
+        lista.removeParImpar(2);
 
         System.out.println(lista);
-        
+        System.out.println(lista.getSize());
     }
 }

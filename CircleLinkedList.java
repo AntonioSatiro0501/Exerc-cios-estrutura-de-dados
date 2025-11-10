@@ -390,4 +390,68 @@ public class CircleLinkedList<T> {
 			size += lista.getSize();
 		}
 	}
+
+	public void removeParImpar(int tipo){
+
+		if(!isEmpty()){
+			int count = 0;
+			if(tipo == 1){
+				if(size >= 2){
+
+					
+					Node<T> pAnda = head.getProx(), headAnt = head;
+					head.setProx(null);
+					head = pAnda;
+					count += 1;
+					while(pAnda != null){
+						if(pAnda.getProx() == headAnt){
+							pAnda.setProx(head);
+							pAnda = null;
+						}
+						else if(pAnda.getProx().getProx() != headAnt){
+							Node<T> aux = pAnda.getProx();
+							pAnda.setProx(aux.getProx());
+							aux.setProx(null);
+							pAnda = pAnda.getProx();
+							count += 1;
+						}
+						else{
+							Node<T> aux = pAnda.getProx();
+							aux.setProx(null);
+							pAnda.setProx(head);
+							count += 1;
+							pAnda = null;
+							
+						}
+
+					}
+				}
+			}
+			else if(tipo == 2){
+				Node<T> pAnda = head;
+					while(pAnda != null){
+						if(pAnda.getProx() == head){
+							pAnda = null;
+						}
+						else if(pAnda.getProx().getProx() != head){
+							Node<T> aux = pAnda.getProx();
+							pAnda.setProx(aux.getProx());
+							aux.setProx(null);
+							pAnda = pAnda.getProx();
+							count += 1;
+						}
+						else{
+							Node<T> aux = pAnda.getProx();
+							aux.setProx(null);
+							pAnda.setProx(head);
+							count += 1;
+							pAnda = null;
+							
+						}
+					}
+			}
+
+			size -= count;
+		}
+	}
 }
