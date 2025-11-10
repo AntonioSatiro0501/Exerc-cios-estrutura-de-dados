@@ -325,11 +325,66 @@ public class LinkedList<T> {
 				pAndaPrimeira = aux1;
 				pAndaSegunda = aux2;
 				
-				
 			}
 
 			size += lista.getSize();
 			
+		}
+	}
+
+	public void removeParImpar(int tipo){
+
+		if(!isEmpty()){
+			int count = 0;
+			if(tipo == 1){
+				if(size >= 2){
+
+					
+					Node<T> pAnda = head.getProx();
+					head.setProx(null);
+					head = pAnda;
+					while(pAnda != null){
+						if(pAnda.getProx() == null){
+							pAnda = null;
+						}
+						else if(pAnda.getProx().getProx() != null){
+							Node<T> aux = pAnda.getProx();
+							pAnda.setProx(aux.getProx());
+							aux.setProx(null);
+							pAnda = pAnda.getProx();
+							count += 1;
+						}
+						else{
+							pAnda.setProx(null);
+							pAnda = null;
+							count += 1;
+						}
+
+					}
+				}
+			}
+			else if(tipo == 2){
+				Node<T> pAnda = head;
+					while(pAnda != null){
+						if(pAnda.getProx() == null){
+							pAnda = null;
+						}
+						else if(pAnda.getProx().getProx() != null){
+							Node<T> aux = pAnda.getProx();
+							pAnda.setProx(aux.getProx());
+							aux.setProx(null);
+							pAnda = pAnda.getProx();
+							count += 1;
+						}
+						else{
+							pAnda.setProx(null);
+							pAnda = null;
+							count += 1;
+						}
+					}
+			}
+
+			size -= count;
 		}
 	}
 }
