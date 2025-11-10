@@ -350,4 +350,44 @@ public class CircleLinkedList<T> {
 
 		}
 	}
+
+	public void merge(CircleLinkedList<T> lista){
+
+		if(!isEmpty() || !lista.isEmpty()){
+
+			Node<T> pAndaPrimeira = head, pAndaSegunda = lista.head;
+			while(pAndaPrimeira.getProx() != head && pAndaSegunda.getProx() != lista.head){
+				Node<T> aux1 = pAndaPrimeira.getProx(), aux2 = pAndaSegunda.getProx();
+
+				pAndaPrimeira.setProx(pAndaSegunda);
+				if(!(aux1 == head)){
+					pAndaSegunda.setProx(aux1);
+				}
+
+				pAndaPrimeira = aux1;
+				pAndaSegunda = aux2;
+			}
+
+			
+
+			if(size > lista.size){
+				Node<T> aux = pAndaPrimeira.getProx();
+				pAndaPrimeira.setProx(pAndaSegunda);
+				pAndaSegunda.setProx(aux);
+				tail.setProx(head);
+			}
+			else if(size == lista.size){
+				pAndaPrimeira.setProx(pAndaSegunda);
+				pAndaSegunda.setProx(head);
+				tail = pAndaSegunda;
+			}
+			else{
+				pAndaPrimeira.setProx(pAndaSegunda);
+				lista.tail.setProx(head);
+				tail = lista.tail;
+			}
+			
+			size += lista.getSize();
+		}
+	}
 }
