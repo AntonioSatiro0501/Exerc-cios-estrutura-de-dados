@@ -1,5 +1,5 @@
 
-public class DLL<T> {
+public class DLL<T extends Comparable<T>> {
 	private	Node2<T> head;
 	private int size;
 	
@@ -260,5 +260,58 @@ public class DLL<T> {
 			head.setLeft(pAnda);
 			size += lista.getSize();
 		}
+	}
+
+	public boolean insertDescending(int Key, T data){
+		if (isFull()) return false;
+		
+		// Cria um novo no
+		Node2<T> novoNo = new Node2<T>(Key, data, null, null);
+
+		// se lista vazia, insere o nó no ponteiro cabeça
+		// e faz o nó apontar para ele mesmo
+		if (isEmpty()) {
+			this.head = novoNo;
+			novoNo.setRight(novoNo);
+			novoNo.setLeft(novoNo);
+		} else { 
+		    // Caso contrário, procura posição de inserção
+		    // na ordem crescente de valores
+			Node2<T> pAnda = this.head, pAnt = null;
+			while (pAnda.getRight().getData().compareTo(data) > 0 && pAnda.getRight() != head){
+					pAnt = pAnda;
+					pAnda = pAnda.getRight();
+			}	
+			
+			if (pAnt == null && pAnda.getData().compareTo(data) < 0){
+				novoNo.setLeft(this.head.getLeft());
+				this.head.getLeft().setRight(novoNo);
+				this.head.setLeft(novoNo);
+				novoNo.setRight(this.head);
+				this.head = novoNo;
+			} else {
+				
+			 	if (pAnda.getRight() == head && pAnt != null) {	 
+					pAnt.getRight().setLeft(novoNo);
+					novoNo.setRight(pAnda);
+					pAnt.setRight(novoNo);
+					novoNo.setLeft(pAnt);
+				} else {// Senão, insere a Key depois do pAnda
+			    	pAnda.getRight().setLeft(novoNo);
+					novoNo.setRight(pAnda.getRight());
+					pAnda.setRight(novoNo);
+					novoNo.setLeft(pAnda);
+				}
+			}
+		}
+		this.size++;
+		return true;
+	}
+
+	public void insertListaDecrescente(T data[]){
+
+		for (int i = 0; i < data.length; ++i)
+			insertDescending(i, data[i]);
+
 	}
 }
