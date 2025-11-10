@@ -366,4 +366,78 @@ public class DLL<T extends Comparable<T>> {
 			size += lista.getSize();
 		}
 	}
+
+	public void removeParImpar(int tipo){
+
+		if(!isEmpty()){
+			int count = 0;
+			if(tipo == 1){
+				if(size >= 2){
+
+					
+					Node2<T> pAnda = head.getRight(), headAnt = head;
+					headAnt.setRight(null);
+					headAnt.setLeft(null);
+					head = pAnda;
+					count += 1;
+					while(pAnda != null){
+						if(pAnda.getRight() == headAnt){
+							pAnda.setRight(head);
+							head.setLeft(pAnda);
+							pAnda = null;
+						}
+						else if(pAnda.getRight().getRight() != headAnt){
+							Node2<T> aux = pAnda.getRight();
+							pAnda.setRight(aux.getRight());
+							pAnda.getRight().setLeft(pAnda);
+							aux.setRight(null);
+							aux.setLeft(null);
+							pAnda = pAnda.getRight();
+							count += 1;
+						}
+						else{
+							Node2<T> aux = pAnda.getRight();
+							pAnda.setRight(head);
+							head.setLeft(pAnda);
+							aux.setLeft(null);
+							aux.setRight(null);
+							pAnda = null;
+							count += 1;
+						}
+
+					}
+				}
+			}
+			else if(tipo == 2){
+				Node2<T> pAnda = head;
+
+					while(pAnda != null){
+						if(pAnda.getRight() == head){
+							pAnda = null;
+						}
+						else if(pAnda.getRight().getRight() != head){
+							Node2<T> aux = pAnda.getRight();
+							pAnda.setRight(aux.getRight());
+							pAnda.getRight().setLeft(pAnda);
+							aux.setRight(null);
+							aux.setLeft(null);
+							pAnda = pAnda.getRight();
+							count += 1;
+						}
+						else{
+							Node2<T> aux = pAnda.getRight();
+							pAnda.setRight(head);
+							head.setLeft(pAnda);
+							aux.setLeft(null);
+							aux.setRight(null);
+							pAnda = null;
+							count += 1;
+						}
+
+					}
+			}
+
+			size -= count;
+		}
+	}
 }
