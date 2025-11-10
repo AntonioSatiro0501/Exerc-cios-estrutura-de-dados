@@ -405,4 +405,24 @@ public class LinkedList<T> {
 		return true;
 	}
 
+	public void duplica(){
+
+		if(!isEmpty()){
+
+			Node<T> pAnda = head, pCount = head;
+			while(pAnda.getProx() != null){
+				pAnda = pAnda.getProx();
+			}
+
+			for(int i = 0; i < size; i++){
+				Node<T> aux = new Node<T>(pCount.getDado(), null);
+				pAnda.setProx(aux);
+				pAnda = aux;
+				pCount = pCount.getProx();
+			}
+
+			size = size*2;
+		}
+	}
+
 }

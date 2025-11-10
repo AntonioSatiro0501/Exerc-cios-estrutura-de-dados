@@ -12,7 +12,7 @@ public class Teste {
 		
 	    
 		// Insere o vetor ids1 no final da lista 
-		lista.removeParImpar(2);
+		lista.duplica();
         System.out.println(lista);
         
     }
