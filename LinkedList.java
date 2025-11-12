@@ -425,4 +425,52 @@ public class LinkedList<T> {
 		}
 	}
 
+
+	public void push (T data){
+
+		if(!isFull()){
+
+			if(isEmpty()){
+
+				head = new Node(dado, null);
+				size += 1;
+			}
+			else{
+
+				Node<T> pAnda = head;
+				while(pAnda.getProx() != null){
+					pAnda = pAnda.getProx();
+				}
+
+				Node<T> aux = new Node(data, null);
+				pAnda.setProx(aux);
+				size += 1;
+			}
+		}
+	}
+
+	public Node<T> pop() throws Exception{
+
+		if(isEmpty()){
+			throw new Exception("Underflow - Esvaziamento da Pilha") ;
+		}
+		else{
+			Node<T> pAnda = head, pAnt = null;
+			while(pAnda.getProx() != null){
+				pAnt = pAnda;
+				pAnda = pAnda.getProx();
+			}
+
+			if(pAnda == head){
+				head = null;
+			}
+			else{
+				pAnt.setProx(null);
+			}
+
+			return pAnda;
+		}
+
+
+	}
 }
