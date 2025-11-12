@@ -432,7 +432,7 @@ public class LinkedList<T> {
 
 			if(isEmpty()){
 
-				head = new Node(dado, null);
+				head = new Node<T>(data, null);
 				size += 1;
 			}
 			else{
@@ -442,7 +442,7 @@ public class LinkedList<T> {
 					pAnda = pAnda.getProx();
 				}
 
-				Node<T> aux = new Node(data, null);
+				Node<T> aux = new Node<T>(data, null);
 				pAnda.setProx(aux);
 				size += 1;
 			}
